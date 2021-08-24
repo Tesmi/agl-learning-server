@@ -3,6 +3,10 @@ const dropboxV2Api = require("dropbox-v2-api");
 const config = require("../config");
 
 module.exports = async (app, client) => {
+  let dir = "downloads/";
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
   app.get("/api/downloadFile", (req, res) => {
     const downloadUrl = req.query.downloadUrl;
     const randumNum = Math.floor(100000 + Math.random() * 900000);

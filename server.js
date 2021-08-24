@@ -49,7 +49,7 @@ require("./publicApis/auth")(app, client);
 require("./publicApis/sendOtp")(app);
 
 //importing private apis
-require("./apis/uploadFile_teacher")(app, client);
+require("./apis/uploadFile")(app, client);
 require("./apis/getAllFiles_teacher")(app, client);
 require("./apis/downloadFile")(app, client);
 require("./apis/deleteFile")(app, client);

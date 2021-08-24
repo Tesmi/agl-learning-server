@@ -9,7 +9,6 @@ module.exports = async (app, client) => {
     "/api/uploadFile",
     upload.single("fileData"),
     async (req, res, next) => {
-
       if (req.user.account != "teacher") {
         return res.json({
           status: "error",
@@ -20,6 +19,7 @@ module.exports = async (app, client) => {
 
       fs.readFile(req.file.path, (err, contents) => {
         if (err) {
+          console.log(err);
           return res.json({
             status: "error",
             msg: `Internal server error`,
@@ -48,8 +48,8 @@ module.exports = async (app, client) => {
               },
               (err, result, response) => {
                 if (err) {
+                  console.log(err);
                   //unline the file
-
                   fs.unlink(req.file.path, (err) => {
                     //todo handle this error
                   });
@@ -88,11 +88,13 @@ module.exports = async (app, client) => {
                     //send response to client
                   })
                   .catch((err) => {
+                    console.log(err);
                     throw new Error("error");
                   });
               }
             );
           } catch (error) {
+            console.log(error);
             return res.json({
               status: "error",
               msg: `Invalid arguments`,
