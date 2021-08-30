@@ -19,7 +19,6 @@ module.exports = async (app, client) => {
 
       fs.readFile(req.file.path, async (err, contents) => {
         if (err) {
-          console.log(err);
           return res.json({
             status: "error",
             msg: `Internal server error`,
@@ -48,7 +47,6 @@ module.exports = async (app, client) => {
               },
               (err, result, response) => {
                 if (err) {
-                  console.log(err);
                   //unline the file
                   fs.unlink(req.file.path, (err) => {
                     //todo handle this error
@@ -88,7 +86,6 @@ module.exports = async (app, client) => {
                     //send response to client
                   })
                   .catch((err) => {
-                    console.log(err);
                     return res.json({
                       status: "error",
                       msg: `Internal server error`,
@@ -98,7 +95,6 @@ module.exports = async (app, client) => {
               }
             );
           } catch (error) {
-            console.log(error);
             return res.json({
               status: "error",
               msg: `Invalid arguments`,
