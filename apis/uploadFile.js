@@ -2,7 +2,7 @@ const dropboxV2Api = require("dropbox-v2-api");
 const config = require("../config");
 const fs = require("fs");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "./uploads/" });
 
 module.exports = async (app, client) => {
   app.post(
@@ -17,7 +17,7 @@ module.exports = async (app, client) => {
         });
       }
 
-      fs.readFile(req.file.path, (err, contents) => {
+      fs.readFile(req.file.path, async (err, contents) => {
         if (err) {
           console.log(err);
           return res.json({
@@ -38,7 +38,7 @@ module.exports = async (app, client) => {
               token: config.DROPBOX_TOKEN,
             });
 
-            dropbox(
+            await dropbox(
               {
                 resource: "files/upload",
                 parameters: {
@@ -89,7 +89,11 @@ module.exports = async (app, client) => {
                   })
                   .catch((err) => {
                     console.log(err);
-                    throw new Error("error");
+                    return res.json({
+                      status: "error",
+                      msg: `Internal server error`,
+                      data: {},
+                    });
                   });
               }
             );

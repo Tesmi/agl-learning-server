@@ -82,7 +82,7 @@ async function deleteScheduledClasses() {
 }
 
 app.get("/", async (req, res) => {
-  res.json("test");
+  res.json("404");
 });
 
 app.listen(5000, () => console.log("server started"));
