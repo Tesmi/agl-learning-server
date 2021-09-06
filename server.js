@@ -46,7 +46,7 @@ require("./AdminApis/generateToken")(app, client);
 require("./publicApis/isKeyAvailable")(app, client);
 require("./publicApis/registerUser")(app, client);
 require("./publicApis/auth")(app, client);
-require("./publicApis/sendOtp")(app);
+require("./publicApis/sendEmail")(app);
 
 //importing private apis
 require("./apis/uploadFile")(app, client);
@@ -67,6 +67,7 @@ require("./apis/getAllFiles_student")(app, client);
 require("./apis/getAllClassesData_student")(app, client);
 require("./apis/getAllNotifications_student")(app, client);
 require("./apis/updateProfile")(app, client);
+require("./apis/drawerData")(app, client);
 
 async function deleteScheduledClasses() {
   try {
@@ -83,6 +84,14 @@ async function deleteScheduledClasses() {
 
 app.get("/", async (req, res) => {
   res.json("404");
+});
+
+app.get("/terms_and_conditions", async (req, res) => {
+  res.sendFile("./public/terms_and_conditions.html", { root: __dirname });
+});
+
+app.get("/privacy_policy", async (req, res) => {
+  res.sendFile("./public/privacy_policy.html", { root: __dirname });
 });
 
 app.listen(5000, () => console.log("server started"));

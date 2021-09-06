@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const config = require("../config");
 
 module.exports = async (app) => {
-  app.get("/public/sendOTP", async (req, res) => {
+  app.get("/public/sendEmail", async (req, res) => {
     const clientEmail = req.query.email;
     const msg = req.query.msg;
     const sub = req.query.sub;
