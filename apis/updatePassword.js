@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const childProc = require("child_process");
 
 module.exports = async (app, client) => {
   app.post("/api/updatePassword", async (req, res) => {
@@ -79,11 +80,21 @@ module.exports = async (app, client) => {
             { $set: { Password: newHashedPassword } }
           )
           .then((e) => {
-            return res.json({
+            res.json({
               status: "success",
               msg: "Password updated successfully",
               data: {},
             });
+
+            childProc.exec(
+              `sudo prosodyctl deluser ${user}@jitsi.aglofficial.com`
+            );
+
+            childProc.exec(
+              `sudo prosodyctl register ${user} jitsi.aglofficial.com ${newPassword}`
+            );
+
+            return;
           })
           .catch((err) => {
             return res.json({

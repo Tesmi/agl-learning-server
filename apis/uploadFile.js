@@ -85,7 +85,7 @@ module.exports = async (app, client) => {
                     });
                     //send response to client
                   })
-                  .catch((err) => {
+                  .catch(() => {
                     return res.json({
                       status: "error",
                       msg: `Internal server error`,

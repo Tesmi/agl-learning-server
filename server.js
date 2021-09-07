@@ -47,6 +47,8 @@ require("./publicApis/isKeyAvailable")(app, client);
 require("./publicApis/registerUser")(app, client);
 require("./publicApis/auth")(app, client);
 require("./publicApis/sendEmail")(app);
+require("./publicApis/findUserInfo")(app, client);
+require("./publicApis/updatePassword")(app, client);
 
 //importing private apis
 require("./apis/uploadFile")(app, client);
@@ -68,6 +70,10 @@ require("./apis/getAllClassesData_student")(app, client);
 require("./apis/getAllNotifications_student")(app, client);
 require("./apis/updateProfile")(app, client);
 require("./apis/drawerData")(app, client);
+require("./apis/uploadRecycleContent")(app, client);
+require("./apis/getRecycleData_teacher")(app, client);
+require("./apis/deleteRecycleContent")(app, client);
+require("./apis/getRecycleData_students")(app, client);
 
 async function deleteScheduledClasses() {
   try {

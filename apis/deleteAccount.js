@@ -1,3 +1,5 @@
+const childProc = require("child_process");
+
 module.exports = async (app, client) => {
   app.get("/api/deleteAccount", async (req, res) => {
     const user = req.user.name;
@@ -11,10 +13,11 @@ module.exports = async (app, client) => {
         data: {},
       });
     }
+    childProc.exec(`sudo prosodyctl deluser ${user}@jitsi.aglofficial.com`);
     return res.json({
       status: "success",
       msg: `Account deleted`,
       data: {},
-    }); 
+    });
   });
 };

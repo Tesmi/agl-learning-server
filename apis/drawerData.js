@@ -1,7 +1,5 @@
 module.exports = async (app, client) => {
   app.get("/api/drawerData", async (req, res) => {
-    console.log("/api/drawerData is called");
-
     try {
       const user = req.user.name;
       const DB = client.db("main").collection("users");
