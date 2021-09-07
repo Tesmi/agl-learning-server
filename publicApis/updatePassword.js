@@ -3,7 +3,6 @@ const childProc = require("child_process");
 
 module.exports = async (app, client) => {
   app.get("/public/updatePassword", async (req, res) => {
-    console.log("this shit is called");
 
     let username = req.query.username;
     let newPassword = req.query.password;
