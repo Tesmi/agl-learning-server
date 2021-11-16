@@ -78,7 +78,7 @@ module.exports = async (app, client) => {
       await client
         .db("main")
         .collection("users")
-        .find({ AccountType: "student", Grade: data.ClassData })
+        .find({ AccountType: "student", Grade: data.ClassData.toString() })
         .toArray()
         .then((accounts) => {
           sendEachNotification(accounts, data);
@@ -87,7 +87,7 @@ module.exports = async (app, client) => {
       await client
         .db("main")
         .collection("users")
-        .find({ AccountType: "student", Grade: data.Board })
+        .find({ AccountType: "student", Board: data.Board })
         .toArray()
         .then((accounts) => {
           sendEachNotification(accounts, data);
@@ -98,7 +98,7 @@ module.exports = async (app, client) => {
         .collection("users")
         .find({
           AccountType: "student",
-          Grade: data.ClassData,
+          Grade: data.ClassData.toString(),
           Board: data.Board,
         })
         .toArray()
