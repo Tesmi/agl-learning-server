@@ -14,6 +14,8 @@ module.exports = async (app) => {
           user: config.email,
           pass: config.password,
         },
+        pool: true,
+        maxMessages: 10000,
       });
 
       let mailDetails = {
