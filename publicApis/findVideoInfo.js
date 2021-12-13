@@ -17,15 +17,12 @@ module.exports = async (app, client) => {
             .findOne({ UserName: vidData.UserName })
             .then((userData) => {
               let data = {
-                VideoName: Array.from(Array(30), () =>
-                  Math.floor(Math.random() * 36).toString(36)
-                ).join(""),
+                VideoName: Math.random().toString(36).slice(2),
                 LectureName: vidData.LectureName,
                 Board: vidData.Board,
                 Class: vidData.ClassData,
                 NameOfTeacher: userData.FullName,
               };
-
               //push data to database
               client
                 .db("main")
@@ -36,36 +33,18 @@ module.exports = async (app, client) => {
                 })
                 .catch((err) => {
                   return res.send(
-                    "INVALID_",
-                    Array.from(Array(30), () =>
-                      Math.floor(Math.random() * 36).toString(36)
-                    ).join("")
+                    "INVALID_" + Math.random().toString(36).slice(2)
                   );
                 });
             })
             .catch((err) => {
-              return res.send(
-                "INVALID_",
-                Array.from(Array(30), () =>
-                  Math.floor(Math.random() * 36).toString(36)
-                ).join("")
-              );
+              return res.send("INVALID_" + Math.random().toString(36).slice(2));
             });
         } else
-          return res.send(
-            "INVALID_",
-            Array.from(Array(30), () =>
-              Math.floor(Math.random() * 36).toString(36)
-            ).join("")
-          );
+          return res.send("INVALID_" + Math.random().toString(36).slice(2));
       })
       .catch((err) => {
-        return res.send(
-          "INVALID_",
-          Array.from(Array(30), () =>
-            Math.floor(Math.random() * 36).toString(36)
-          ).join("")
-        );
+        return res.send("INVALID_" + Math.random().toString(36).slice(2));
       });
   });
 };
