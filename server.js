@@ -49,6 +49,8 @@ require("./publicApis/auth")(app, client);
 require("./publicApis/sendEmail")(app);
 require("./publicApis/findUserInfo")(app, client);
 require("./publicApis/updatePassword")(app, client);
+require("./publicApis/streamVideo")(app, client);
+require("./publicApis/findVideoInfo")(app, client);
 
 //importing private apis
 require("./apis/uploadFile")(app, client);
