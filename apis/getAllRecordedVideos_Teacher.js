@@ -47,7 +47,7 @@ module.exports = async (app, client) => {
           return res.json({
             status: "success",
             msg: `no data found`,
-            data: { document: "no_data" },
+            data: { document: null },
           });
         }
       });
