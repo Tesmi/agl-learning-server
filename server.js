@@ -76,6 +76,7 @@ require("./apis/uploadRecycleContent")(app, client);
 require("./apis/getRecycleData_teacher")(app, client);
 require("./apis/deleteRecycleContent")(app, client);
 require("./apis/getRecycleData_students")(app, client);
+require("./apis/getAllRecordedVideos")(app, client);
 
 async function deleteScheduledClasses() {
   try {
