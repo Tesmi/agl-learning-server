@@ -1,8 +1,7 @@
 const fs = require("fs");
-const node_path = require("path");
 
 module.exports = async (app, client) => {
-  app.get("/api/getAllRecordedVideos", async (req, res) => {
+  app.get("/api/getAllRecordedVideos_Student", async (req, res) => {
     const user = req.user.name;
 
     try {
@@ -47,7 +46,6 @@ module.exports = async (app, client) => {
         }
       } else throw new Error("error");
     } catch (error) {
-      console.log(error);
       return res.json({
         status: "error",
         msg: `Internal server error`,

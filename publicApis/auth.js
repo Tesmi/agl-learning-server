@@ -7,6 +7,7 @@ module.exports = async (app, client) => {
     try {
       let userNameOrEmail = req.query.user;
       let password = req.query.password;
+      let fcm = req.query.fcm;
 
       if (!userNameOrEmail || !password) {
         return res.json({
@@ -43,7 +44,9 @@ module.exports = async (app, client) => {
                 refreshToken,
                 e.AccountType,
                 client,
-                res
+                res,
+                fcm,
+                e.UserName
               );
             } else {
               return res.json({
@@ -176,13 +179,17 @@ pushRefreshTokens = async (
   refreshToken,
   accountType,
   client,
-  res
+  res,
+  fcm,
+  username
 ) => {
   await client
     .db("main")
     .collection("loginTokens")
     .insertOne({
       token: refreshToken,
+      UserName: username,
+      FCM: fcm,
     })
     .then((e) => {
       return res.json({

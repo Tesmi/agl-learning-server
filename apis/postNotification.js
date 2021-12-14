@@ -1,4 +1,10 @@
-const axios = require("axios");
+var admin = require("firebase-admin");
+
+var serviceAccount = require("../agl-learning-app-7a675-firebase-adminsdk-qe4gx-c6e38c8b46.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 module.exports = async (app, client) => {
   app.post("/api/postNotification", async (req, res) => {
@@ -42,6 +48,7 @@ module.exports = async (app, client) => {
         .collection("notifications")
         .insertOne(dataToBeUploaded)
         .then((e) => {
+          sendInAppNotifications(dataToBeUploaded);
           return res.json({
             status: "success",
             msg: `Notification posted successfully`,
@@ -63,4 +70,37 @@ module.exports = async (app, client) => {
       });
     }
   });
+  async function sendInAppNotifications(data) {
+    let fcm_tokens = [];
+
+    let users = await client
+      .db("main")
+      .collection("loginTokens")
+      .find()
+      .toArray();
+    if (users.length > 0) {
+      for (let i = 0; i < users.length; ++i) {
+        if (users[i].FCM) fcm_tokens.push(users[i].FCM);
+      }
+    }
+
+    let payload = {
+      notification: {
+        title: data.By,
+        body: data.Description,
+        sound: "default",
+        badge: "1",
+      },
+    };
+
+    let notificationOptions = {
+      priority: "high",
+    };
+
+    admin
+      .messaging()
+      .sendToDevice(fcm_tokens, payload, notificationOptions)
+      .then(function (response) {})
+      .catch(function (error) {});
+  }
 };

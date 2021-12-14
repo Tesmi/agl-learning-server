@@ -3,11 +3,10 @@ const fs = require("fs");
 
 module.exports = async (app, client) => {
   app.get("/public/streamVideo", async (req, res) => {
-    // const path = req.query.vidPath;
     const path = path_p.join(
       path_p.dirname(fs.realpathSync(__filename)),
       "../recordings/",
-      req.query.vidName
+      req.query.vidName + ".mp4"
     );
 
     const stat = fs.statSync(path);

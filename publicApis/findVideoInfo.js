@@ -22,6 +22,7 @@ module.exports = async (app, client) => {
                 Board: vidData.Board,
                 Class: vidData.ClassData,
                 NameOfTeacher: userData.FullName,
+                UserNameOfTeacher: userData.UserName
               };
               //push data to database
               client
