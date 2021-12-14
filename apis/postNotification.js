@@ -86,8 +86,8 @@ module.exports = async (app, client) => {
 
     let payload = {
       notification: {
-        title: data.By,
-        body: data.Description,
+        title: data.Subject,
+        body: data.By + ": " + data.Description,
         sound: "default",
         badge: "1",
       },
