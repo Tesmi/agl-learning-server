@@ -1,9 +1,7 @@
 module.exports = async (app, client) => {
   app.post("/api/updateProfile", async (req, res) => {
-
     const user = req.user.name;
     const accountType = req.body.accountType;
-
     try {
       if (accountType == "teacher") {
         client
@@ -16,6 +14,10 @@ module.exports = async (app, client) => {
                 FullName: toTitleCase(req.body.fullName),
                 Email: req.body.email,
                 Contact: req.body.contact,
+                Age: req.body.Age,
+                Experience: req.body.Experience,
+                Qualifications: toTitleCase(req.body.Qualifications),
+                Specializations: toTitleCase(req.body.Specializations),
               },
             }
           )

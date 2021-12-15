@@ -1,6 +1,5 @@
 module.exports = async (app, client) => {
   app.get("/api/dashboardData", async (req, res) => {
-
     const user = req.user.name;
     const moderators = 4;
 
@@ -21,10 +20,21 @@ module.exports = async (app, client) => {
         totalTeachers,
         moderators,
         currentClasses: null,
+        teacherData: null,
       };
 
       let currentIndianTime = Date.now(); // 5.5 hours ahead of utc
       currentIndianTime = currentIndianTime.toString();
+
+      let teacherData = await client
+        .db("main")
+        .collection("users")
+        .find({ AccountType: "teacher" })
+        .toArray();
+
+      if (teacherData.length > 0) {
+        dashboardData.teacherData = teacherData;
+      }
 
       if (userData.AccountType == "student") {
         let currentClasses = await db_classes
@@ -48,12 +58,10 @@ module.exports = async (app, client) => {
           })
           .toArray();
 
-
         if (currentClasses.length > 0) {
           dashboardData.currentClasses = currentClasses;
         }
       }
-
 
       return res.json({
         status: "success",
