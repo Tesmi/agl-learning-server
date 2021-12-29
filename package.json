@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dropbox-v2-api": "^2.4.45",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "firebase-admin": "^10.0.0",
     "jsonwebtoken": "^8.5.1",

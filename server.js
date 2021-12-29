@@ -41,6 +41,21 @@ app.use("/api", authenticateUser);
 
 //importing admin apis
 require("./AdminApis/generateToken")(app, client);
+require("./AdminApis/sendAllUsers")(app, client);
+require("./AdminApis/deleteUser")(app, client);
+require("./AdminApis/sendAllKeys")(app, client);
+require("./AdminApis/deleteKey")(app, client);
+require("./AdminApis/sendAllClasses")(app, client);
+require("./AdminApis/deleteClass")(app, client);
+require("./AdminApis/sendAllRecordings")(app, client);
+require("./AdminApis/deleteVideo")(app, client);
+require("./AdminApis/sendAllFiles")(app, client);
+require("./AdminApis/deleteFile")(app, client);
+require("./AdminApis/sendDashData")(app, client);
+require("./AdminApis/sendRecycleData")(app, client);
+require("./AdminApis/deleteContent")(app, client);
+require("./AdminApis/sendAllNotiData")(app, client);
+require("./AdminApis/deleteNoti")(app, client);
 
 //importing public apis
 require("./publicApis/isKeyAvailable")(app, client);
