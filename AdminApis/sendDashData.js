@@ -39,15 +39,22 @@ module.exports = async (app, client) => {
             if (statsObj) videosSize += statsObj.size;
             videosSize = videosSize / 1024 / 1024;
           }
-
           let datatobesent = {
-            dbSize,
+            dbSize: 2,
             fullSize,
             totalTeachers,
             totalStudents,
             videosSize,
           };
-
+          return res.send({ stats: datatobesent });
+        } else {
+          let datatobesent = {
+            dbSize: 2,
+            fullSize,
+            totalTeachers,
+            totalStudents,
+            videosSize: 0,
+          };
           return res.send({ stats: datatobesent });
         }
       }
