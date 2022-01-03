@@ -4,6 +4,7 @@ const cors = require("cors");
 const cron = require("node-cron");
 
 app.use(express.static("public"));
+app.use(express.static("profile"));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -93,6 +94,7 @@ require("./apis/deleteRecycleContent")(app, client);
 require("./apis/getRecycleData_students")(app, client);
 require("./apis/getAllRecordedVideos_Student")(app, client);
 require("./apis/getAllRecordedVideos_Teacher")(app, client);
+require("./apis/uploadProfilePic")(app, client);
 
 async function deleteScheduledClasses() {
   try {

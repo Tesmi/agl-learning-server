@@ -8,9 +8,9 @@ module.exports = {
   email: "aglofficial29@gmail.com",
   password: "ybfdxbaaqhskjhwb",
   //db_uri:
-   // "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
+  // "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
   db_uri:
-   "mongodb+srv://tushar:s2aTzU3wc7Sl3M3L@cluster0.xq4oc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://tushar:s2aTzU3wc7Sl3M3L@cluster0.xq4oc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 
   DROPBOX_TOKEN:
     "ko82xSumpLEAAAAAAAAAAUHas-yXbqBrVj-yz0sbYU9oVStqD861ftPo56RGMdtF",
